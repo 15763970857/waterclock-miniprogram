@@ -1,0 +1,48 @@
+<view class="page">
+
+  <view class="topbar">
+    <view class="brand-text">
+      <text class="brand-title">提醒</text>
+      <text class="brand-sub">每天固定时间点，只在本机保存</text>
+    </view>
+    <view class="goal-chip">{{countText}}</view>
+  </view>
+
+  <view class="card rem-card">
+    <view class="list-head">
+      <text class="list-title">提醒时间</text>
+      <text class="list-count">点时间可修改</text>
+    </view>
+
+    <view class="rem-item" wx:for="{{items}}" wx:key="id">
+      <picker class="rem-picker" mode="time" value="{{item.time}}" data-id="{{item.id}}" bindchange="onTimeChange">
+        <view class="rem-time {{item.on ? '' : 'off'}}">{{item.time}}</view>
+      </picker>
+      <view class="rem-ops">
+        <switch class="rem-switch" checked="{{item.on}}" color="#0ea5e9"
+                data-id="{{item.id}}" bindchange="onToggle" />
+        <view class="rem-del" data-id="{{item.id}}" data-time="{{item.time}}" catchtap="removeTime">×</view>
+      </view>
+    </view>
+
+    <view class="rem-empty" wx:if="{{isEmpty}}">还没有提醒时间，点下面添加一个吧</view>
+
+    <picker mode="time" value="{{newTime}}" bindchange="addTime">
+      <view class="btn-add">+ 添加提醒时间</view>
+    </picker>
+  </view>
+
+  <view class="card tip-card">
+    <text class="tip-title">到点怎么提醒</text>
+    <text class="tip-line">小程序没有后台定时推送。打开小程序时会检查今天已经过了哪些提醒点、哪些还没提醒过，只取最近一个未提醒的弹一次提示；已提醒的点按日期记在本机，不会重复弹。</text>
+    <text class="tip-line">想收到微信服务通知，可以在下方授权订阅消息（一次性订阅，每次授权只允许推送一条）。</text>
+
+    <view class="sub-row" wx:if="{{subscribeReady}}">
+      <text class="sub-txt">{{subscribeOn ? '已授权订阅消息' : '尚未授权订阅消息'}}</text>
+      <button class="btn-sub" bindtap="enableSubscribe">去授权</button>
+    </view>
+  </view>
+
+  <text class="data-note">提醒配置仅保存在本机，清除微信缓存或更换设备后会丢失</text>
+
+</view>

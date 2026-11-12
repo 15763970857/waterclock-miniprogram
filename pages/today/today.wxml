@@ -1,0 +1,118 @@
+<view class="page">
+
+  <view class="topbar">
+    <view class="brand">
+      <view class="brand-mark">
+        <view class="brand-drop"></view>
+      </view>
+      <view class="brand-text">
+        <text class="brand-title">水时钟</text>
+        <text class="brand-sub">{{todayLabel}}</text>
+      </view>
+    </view>
+    <view class="top-ops">
+      <view class="rem-entry" bindtap="openReminder">提醒</view>
+      <view class="goal-chip">目标 {{goal}}ml</view>
+    </view>
+  </view>
+
+  <view class="card ring-card">
+    <view class="ring-wrap">
+      <canvas type="2d" id="ringCanvas" class="ring-canvas"></canvas>
+      <view class="ring-center {{deep ? 'deep' : ''}}">
+        <view class="amount">
+          <text class="amount-num">{{total}}</text>
+          <text class="amount-unit">ml</text>
+        </view>
+        <text class="ring-sub">{{percentText}}</text>
+      </view>
+    </view>
+
+    <view class="progress-line">今日已饮 <text class="hl">{{total}}</text> ml / 目标 <text class="hl">{{goal}}</text> ml</view>
+    <view class="badge" wx:if="{{isGoal}}">今日已达标</view>
+    <view class="over-hint" wx:if="{{overWarn}}">今天喝得够多啦，注意适量饮水，记录仍会保留。</view>
+
+    <button class="btn-main" bindtap="openSheet">记一杯</button>
+
+    <view class="quick">
+      <button class="chip"
+              wx:for="{{amounts}}"
+              wx:key="*this"
+              data-ml="{{item}}"
+              bindtap="quickAdd">{{item}} ml</button>
+      <button class="chip" bindtap="openCustomSheet">自定义</button>
+    </view>
+    <text class="quick-tip">快捷杯量点一下即记录，自定义可填 10-2000 ml</text>
+
+    <button class="btn-undo" bindtap="undoLast" disabled="{{!hasRecords}}">撤回上一杯</button>
+  </view>
+
+  <view class="card list-card">
+    <view class="list-head">
+      <text class="list-title">今日记录</text>
+      <text class="list-count">{{recordCountText}}</text>
+    </view>
+
+    <view class="rec-list" wx:if="{{hasRecords}}">
+      <view class="rec" wx:for="{{records}}" wx:key="id">
+        <view class="rec-ico">
+          <view class="mini-drop"></view>
+        </view>
+        <view class="rec-main">
+          <view class="rec-ml">
+            <text>{{item.ml}}</text>
+            <text class="rec-ml-unit">ml</text>
+          </view>
+          <text class="rec-time">{{item.time}}</text>
+        </view>
+        <view class="rec-del" data-id="{{item.id}}" data-ml="{{item.ml}}" catchtap="deleteRecord">×</view>
+      </view>
+    </view>
+
+    <view class="list-empty" wx:else>还没有记录，喝完第一杯就来记一笔吧</view>
+  </view>
+
+  <text class="data-note">数据仅保存在本机，清除微信缓存或更换设备后会丢失</text>
+
+  <!-- 记一杯 底部弹层 -->
+  <view class="mask {{sheetVisible ? 'show' : ''}}" bindtap="closeSheet" catchtouchmove="noop"></view>
+  <view class="sheet {{sheetVisible ? 'show' : ''}}" catchtouchmove="noop">
+    <view class="sheet-handle"></view>
+    <text class="sheet-title">记一杯</text>
+    <text class="sheet-sub">选择这一杯的水量，确认后自动计入今日进度。</text>
+
+    <view class="amt-grid">
+      <view class="amt {{!customOn && selectedMl === item ? 'sel' : ''}}"
+            wx:for="{{amounts}}"
+            wx:key="*this"
+            data-ml="{{item}}"
+            bindtap="selectAmount">
+        <text class="amt-num">{{item}}</text>
+        <text class="amt-unit">ml</text>
+        <view class="tick" wx:if="{{!customOn && selectedMl === item}}">
+          <text class="tick-ico">✓</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="custom-row {{customOn ? 'on' : ''}}">
+      <text class="custom-label">自定义</text>
+      <view class="stepper">
+        <view class="step" data-step="-10" bindtap="stepCustom">−</view>
+        <input class="step-input"
+               type="number"
+               maxlength="4"
+               value="{{customVal}}"
+               placeholder="10-2000"
+               placeholder-class="step-ph"
+               bindinput="onCustomInput"
+               bindblur="onCustomBlur" />
+        <view class="step" data-step="10" bindtap="stepCustom">+</view>
+      </view>
+    </view>
+
+    <text class="sheet-note">快捷 100 / 200 ml · 自定义默认 50 ml（10-2000）· 今日已饮 {{sheetTotal}} ml / 目标 {{goal}} ml</text>
+    <button class="btn-confirm" bindtap="confirmAdd">{{confirmText}}</button>
+  </view>
+
+</view>

@@ -1,0 +1,497 @@
+/* 今日页 */
+.top-ops {
+  display: flex;
+  align-items: center;
+}
+
+.rem-entry {
+  font-size: 23rpx;
+  font-weight: 600;
+  color: #0b6f9e;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1rpx solid rgba(14, 165, 233, 0.22);
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  margin-right: 12rpx;
+  white-space: nowrap;
+}
+
+.rem-entry:active {
+  background: #ffffff;
+  opacity: 0.85;
+}
+
+.ring-card {
+  padding: 36rpx 32rpx 40rpx;
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 440rpx;
+  height: 440rpx;
+  margin: 0 auto;
+}
+
+.ring-canvas {
+  width: 440rpx;
+  height: 440rpx;
+}
+
+.ring-center {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 440rpx;
+  height: 440rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.amount {
+  display: flex;
+  align-items: baseline;
+}
+
+.amount-num {
+  font-size: 76rpx;
+  font-weight: 800;
+  letter-spacing: -2rpx;
+  color: #0b6f9e;
+  line-height: 1;
+}
+
+.amount-unit {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #5b7c8d;
+  margin-left: 6rpx;
+}
+
+.ring-sub {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #5b7c8d;
+  letter-spacing: 0.5rpx;
+}
+
+/* 水位过半时中心文字转白，保证在蓝色水面上清晰 */
+.ring-center.deep .amount-num {
+  color: #ffffff;
+  text-shadow: 0 4rpx 16rpx rgba(3, 79, 110, 0.35);
+}
+
+.ring-center.deep .amount-unit,
+.ring-center.deep .ring-sub {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.progress-line {
+  margin-top: 26rpx;
+  font-size: 27rpx;
+  color: #5b7c8d;
+}
+
+.progress-line .hl {
+  color: #0284c7;
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 18rpx;
+  font-size: 23rpx;
+  font-weight: 600;
+  color: #067a6b;
+  background: rgba(13, 148, 136, 0.1);
+  border: 1rpx solid rgba(13, 148, 136, 0.22);
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+}
+
+.over-hint {
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1rpx solid rgba(245, 158, 11, 0.22);
+  padding: 14rpx 20rpx;
+  border-radius: 20rpx;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.btn-main {
+  width: 100%;
+  height: 104rpx;
+  line-height: 104rpx;
+  margin-top: 32rpx;
+  border-radius: 32rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+  color: #ffffff;
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 45%, #0891b2 100%);
+  box-shadow: 0 12rpx 28rpx rgba(8, 145, 178, 0.3);
+}
+
+.btn-main:active {
+  transform: scale(0.985);
+  opacity: 0.94;
+}
+
+.quick {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22rpx;
+}
+
+.chip {
+  width: 31%;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-radius: 24rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #0284c7;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1rpx solid rgba(14, 165, 233, 0.2);
+}
+
+.chip:active {
+  background: #ffffff;
+  transform: scale(0.97);
+}
+
+.quick-tip {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 22rpx;
+  color: #8fa9b8;
+}
+
+/* 撤回上一杯 */
+.btn-undo {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 22rpx;
+  border-radius: 24rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #0284c7;
+  background: rgba(14, 165, 233, 0.08);
+}
+
+.btn-undo::after {
+  border: none;
+}
+
+.btn-undo[disabled] {
+  color: #b8cbd6;
+  background: rgba(143, 169, 184, 0.08);
+}
+
+/* 今日记录 */
+.list-card {
+  padding: 32rpx 32rpx 16rpx;
+}
+
+.rec-list {
+  margin-top: 8rpx;
+}
+
+.rec {
+  display: flex;
+  align-items: center;
+  padding: 22rpx 0;
+  border-bottom: 1rpx solid rgba(14, 165, 233, 0.08);
+}
+
+.rec:last-child {
+  border-bottom: none;
+}
+
+.rec-ico {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(150deg, rgba(56, 189, 248, 0.16), rgba(8, 145, 178, 0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 22rpx;
+  flex-shrink: 0;
+}
+
+.mini-drop {
+  width: 22rpx;
+  height: 22rpx;
+  background: #0891b2;
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+}
+
+.rec-main {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+}
+
+.rec-ml {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0b3b52;
+}
+
+.rec-ml-unit {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #8fa9b8;
+  margin-left: 4rpx;
+}
+
+.rec-time {
+  font-size: 23rpx;
+  color: #8fa9b8;
+  margin-left: 16rpx;
+}
+
+.rec-del {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 16rpx;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 30rpx;
+  color: #a9c1cf;
+}
+
+.rec-del:active {
+  background: rgba(244, 63, 94, 0.08);
+  color: #e11d48;
+}
+
+.list-empty {
+  padding: 36rpx 8rpx 44rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #8fa9b8;
+  line-height: 1.6;
+}
+
+/* 底部弹层 */
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  background: rgba(5, 40, 60, 0.34);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 21;
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbff 100%);
+  border-radius: 40rpx 40rpx 0 0;
+  box-shadow: 0 -18rpx 40rpx rgba(3, 90, 130, 0.18);
+  padding: 20rpx 40rpx 52rpx;
+  box-sizing: border-box;
+  transform: translateY(110%);
+  transition: transform 0.36s cubic-bezier(0.18, 0.86, 0.32, 1);
+}
+
+.sheet.show {
+  transform: translateY(0);
+}
+
+.sheet-handle {
+  width: 76rpx;
+  height: 8rpx;
+  border-radius: 6rpx;
+  background: rgba(14, 165, 233, 0.22);
+  margin: 0 auto 28rpx;
+}
+
+.sheet-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.sheet-sub {
+  display: block;
+  margin: 12rpx 0 32rpx;
+  font-size: 24rpx;
+  color: #8fa9b8;
+  line-height: 1.5;
+}
+
+.amt-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.amt {
+  position: relative;
+  width: 48.5%;
+  height: 124rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid rgba(14, 165, 233, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.amt.sel {
+  background: linear-gradient(150deg, rgba(56, 189, 248, 0.16), rgba(8, 145, 178, 0.1));
+  border-color: rgba(14, 165, 233, 0.55);
+  box-shadow: 0 8rpx 20rpx rgba(8, 145, 178, 0.12);
+}
+
+.amt-num {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #0b3b52;
+}
+
+.amt.sel .amt-num {
+  color: #0284c7;
+}
+
+.amt-unit {
+  font-size: 20rpx;
+  color: #8fa9b8;
+  margin-top: 4rpx;
+}
+
+.amt.sel .amt-unit {
+  color: #0284c7;
+}
+
+/* 自定义水量行 */
+.custom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding: 18rpx 24rpx;
+  box-sizing: border-box;
+  border-radius: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid rgba(14, 165, 233, 0.18);
+}
+
+.custom-row.on {
+  border-color: rgba(14, 165, 233, 0.55);
+  background: linear-gradient(150deg, rgba(56, 189, 248, 0.12), rgba(8, 145, 178, 0.07));
+}
+
+.custom-label {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #0b3b52;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+}
+
+.step {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 62rpx;
+  text-align: center;
+  border-radius: 18rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #0284c7;
+  background: rgba(14, 165, 233, 0.1);
+}
+
+.step:active {
+  background: rgba(14, 165, 233, 0.2);
+}
+
+.step-input {
+  width: 170rpx;
+  height: 64rpx;
+  margin: 0 12rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0b3b52;
+}
+
+.step-ph {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #b8cbd6;
+}
+
+.tick {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8, #0891b2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tick-ico {
+  font-size: 16rpx;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.sheet-note {
+  display: block;
+  margin-top: 26rpx;
+  font-size: 22rpx;
+  color: #8fa9b8;
+  text-align: center;
+}
+
+.btn-confirm {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-top: 30rpx;
+  border-radius: 30rpx;
+  font-size: 31rpx;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1rpx;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9 50%, #0891b2);
+  box-shadow: 0 12rpx 28rpx rgba(8, 145, 178, 0.3);
+}
+
+.btn-confirm:active {
+  transform: scale(0.985);
+  opacity: 0.94;
+}

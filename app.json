@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/today/today",
+    "pages/weekly/weekly",
+    "pages/reminder/reminder"
+  ],
+  "window": {
+    "navigationBarTitleText": "水时钟",
+    "navigationBarBackgroundColor": "#eaf7ff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#eaf7ff",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#8FA9B8",
+    "selectedColor": "#0284C7",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/today/today",
+        "text": "今日",
+        "iconPath": "images/tab-today.png",
+        "selectedIconPath": "images/tab-today-active.png"
+      },
+      {
+        "pagePath": "pages/weekly/weekly",
+        "text": "周报",
+        "iconPath": "images/tab-weekly.png",
+        "selectedIconPath": "images/tab-weekly-active.png"
+      }
+    ]
+  },
+  "__usePrivacyCheck__": true,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

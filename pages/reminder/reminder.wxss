@@ -1,0 +1,130 @@
+/* 提醒设置页 */
+.rem-card {
+  padding: 32rpx 32rpx 28rpx;
+}
+
+.rem-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgba(14, 165, 233, 0.08);
+}
+
+.rem-item:last-of-type {
+  border-bottom: none;
+}
+
+.rem-picker {
+  flex: 1;
+}
+
+.rem-time {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0b3b52;
+  letter-spacing: 1rpx;
+}
+
+.rem-time.off {
+  color: #b8cbd6;
+}
+
+.rem-ops {
+  display: flex;
+  align-items: center;
+}
+
+.rem-switch {
+  transform: scale(0.86);
+}
+
+.rem-del {
+  width: 52rpx;
+  height: 52rpx;
+  margin-left: 12rpx;
+  border-radius: 16rpx;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 30rpx;
+  color: #a9c1cf;
+}
+
+.rem-del:active {
+  background: rgba(244, 63, 94, 0.08);
+  color: #e11d48;
+}
+
+.rem-empty {
+  padding: 28rpx 8rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #8fa9b8;
+}
+
+.btn-add {
+  margin-top: 20rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 24rpx;
+  font-size: 27rpx;
+  font-weight: 600;
+  color: #0284c7;
+  background: rgba(14, 165, 233, 0.08);
+}
+
+.btn-add:active {
+  background: rgba(14, 165, 233, 0.16);
+}
+
+/* 说明卡片 */
+.tip-card {
+  margin-top: 24rpx;
+  padding: 30rpx 32rpx;
+}
+
+.tip-title {
+  display: block;
+  font-size: 29rpx;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+
+.tip-line {
+  display: block;
+  font-size: 24rpx;
+  line-height: 1.65;
+  color: #5b7c8d;
+  margin-bottom: 14rpx;
+}
+
+.sub-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid rgba(14, 165, 233, 0.1);
+}
+
+.sub-txt {
+  font-size: 25rpx;
+  color: #0b3b52;
+}
+
+.btn-sub {
+  margin: 0;
+  padding: 0 26rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #38bdf8, #0891b2);
+}
+
+.btn-sub::after {
+  border: none;
+}

@@ -1,0 +1,73 @@
+<view class="page">
+
+  <view class="topbar">
+    <view class="brand-text">
+      <text class="brand-title">周报</text>
+      <text class="brand-sub">{{weekRange}}</text>
+    </view>
+    <view class="goal-chip">目标 {{goal}}ml / 天</view>
+  </view>
+
+  <block wx:if="{{hasData}}">
+
+    <view class="card sum-card">
+      <view class="sum-row">
+        <view class="sum-item">
+          <view class="sum-num">
+            <text>{{okDays}}</text>
+            <text class="sum-unit">/ 7 天</text>
+          </view>
+          <text class="sum-lbl">本周达标天数</text>
+        </view>
+        <view class="sum-div"></view>
+        <view class="sum-item">
+          <view class="sum-num">
+            <text>{{weekTotal}}</text>
+            <text class="sum-unit">ml</text>
+          </view>
+          <text class="sum-lbl">本周饮水总量</text>
+        </view>
+      </view>
+      <text class="sum-tip">{{weekTip}}</text>
+    </view>
+
+    <view class="card chart-card">
+      <view class="list-head">
+        <text class="list-title">每日饮水</text>
+        <text class="list-count">绿色柱子为达标（≥ 2000ml）</text>
+      </view>
+
+      <view class="chart">
+        <view class="goal-line sub-line" style="bottom: {{goalBottom1800}}rpx">
+          <text class="goal-txt sub-txt">1800ml</text>
+        </view>
+        <view class="goal-line" style="bottom: {{goalBottom}}rpx">
+          <text class="goal-txt">2000ml</text>
+        </view>
+        <view class="bars">
+          <view class="col {{item.isToday ? 'is-today' : ''}}" wx:for="{{days}}" wx:key="key">
+            <text class="col-val">{{item.total}}</text>
+            <view class="bar-track">
+              <view class="bar {{item.done ? 'done' : ''}} {{item.h === 0 ? 'empty' : ''}}"
+                    style="height: {{item.h}}rpx"></view>
+            </view>
+            <text class="col-lbl">{{item.label}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </block>
+
+  <view class="card empty-card" wx:else>
+    <view class="empty-art">
+      <view class="drop"></view>
+    </view>
+    <text class="empty-title">从今天开始第一杯</text>
+    <text class="empty-sub">本周还没有饮水记录。记下第一杯，明天这里就会出现你的进度柱。</text>
+    <button class="btn-ghost" bindtap="goToday">去记一笔</button>
+  </view>
+
+  <text class="data-note">数据仅保存在本机，清除微信缓存或更换设备后会丢失</text>
+
+</view>
